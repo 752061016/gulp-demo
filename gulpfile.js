@@ -180,7 +180,9 @@ const useref = () => {
 
 const upload = () => {
     return src('dist/**/*')
-        .pipe(plugins.ghPages())
+        .pipe(plugins.ghPages({
+            cacheDir: `dist/publish`,
+        }))
 }
 
 // 整理 scss 和 js 文件
