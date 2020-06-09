@@ -179,8 +179,8 @@ const useref = () => {
 }
 
 const upload = () => {
-    return src('./dist/**/*')
-        .pipe(plugins.ghPages());
+    return src('dist/**/*')
+        .pipe(plugins.ghPages())
 }
 
 // 整理 scss 和 js 文件
@@ -196,7 +196,7 @@ const build = series(clean, parallel(extra, image, font, series(compile, useref)
 const start = series(build, serve)
 
 // 开发时 先成为模块的编译，再开启服务器，使用 series 方法组合任务
-const deploy = series(compile, upload)
+const deploy = series(build, upload)
 
 
 module.exports = {
