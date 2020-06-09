@@ -44,7 +44,7 @@ try {
 
 // 使用del插件清空文件: dist 放置的是编译后的文件，temp 放置的是编译时的临时文件
 const clean = () => {
-    return del([config.build.dist, config.build.temp])
+    return del([config.build.dist, config.build.temp,'.publish'])
 }
 
 const path = require('path')
@@ -181,7 +181,8 @@ const useref = () => {
 const upload = () => {
     return src('dist/**/*')
         .pipe(plugins.ghPages({
-            cacheDir: `dist/publish`,
+            src:'dist/',
+            force: true
         }))
 }
 
